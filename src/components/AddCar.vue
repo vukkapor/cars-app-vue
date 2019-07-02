@@ -70,6 +70,9 @@
     <div>
       <button @click="resetForm()">Reset form</button>
     </div>
+    <div>
+      <button @click="preview()">Preview car</button>
+    </div>
   </div>
 </template>
 
@@ -97,6 +100,18 @@ export default {
 
     resetForm() {
       this.newCar = { isAutomatic: false, maxSpeed: 0, numberOfDoors: 0 };
+    },
+
+    preview() {
+      alert(
+        "Brand: " + this.newCar.brand +
+        "\nModel: "  + this.newCar.model +
+        "\nYear: "  + this.newCar.year +
+        "\nMax speed: "  + this.newCar.maxSpeed +
+        "\nAutomatic: "  + this.newCar.isAutomatic +
+        "\nEngine: "  + this.newCar.engine +
+        "\nNumber of doors: "  + this.newCar.numberOfDoors
+        )
     }
   }
 };
