@@ -9,17 +9,23 @@
       <th>Automatic</th>
       <th>Engine</th>
       <th>Number of doors</th>
+      <th>Actions</th>
     </tr>
     <tr v-for="car in cars" :key="car.id">
-        <td>{{car.id}}</td>
-        <td>{{car.brand}}</td>
-        <td>{{car.model}}</td>
-        <td>{{car.year}}</td>
-        <td>{{car.maxSpeed}}</td>
-        <td>{{car.isAutomatic}}</td>
-        <td>{{car.engine}}</td>
-        <td>{{car.numberOfDoors}}</td>
-        <td><button type="submit" @click="editCar(car.id)">Edit</button></td>
+      <td>{{car.id}}</td>
+      <td>{{car.brand}}</td>
+      <td>{{car.model}}</td>
+      <td>{{car.year}}</td>
+      <td>{{car.maxSpeed}}</td>
+      <td>{{car.isAutomatic}}</td>
+      <td>{{car.engine}}</td>
+      <td>{{car.numberOfDoors}}</td>
+      <td>
+        <button type="button" @click="editCar(car.id)">Edit</button>
+      </td>
+      <td>
+        <button type="button" @click="deleteCar(car.id)">Delete</button>
+      </td>
     </tr>
   </table>
 </template>
@@ -46,14 +52,21 @@ export default {
   },
 
   methods: {
-      editCar(id){
-          carsService
-          .get(id)
-          .then(() => {
-              this.$router.push('edit/' + id)
-              
-          })
-      }
+    editCar(id) {
+      carsService.get(id).then(() => {
+        this.$router.push("edit/" + id);
+      });
+    },
+    deleteCar(id) {
+      carsService
+        .delete(id)
+        .then(() => {
+            this.$router.go();
+        })
+        .catch(e => {
+          alert(e);
+        });
+    }
   }
 };
 </script>

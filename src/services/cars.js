@@ -20,6 +20,10 @@ export default class CarsService {
     edit(id, car) {
         return axios.put('cars/' + id, car)
     }
+
+    delete(id) {
+        return axios.delete('cars/' + id)
+    }
 }
 
 export const carsService = new CarsService()
