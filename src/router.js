@@ -7,17 +7,21 @@ import AppCars from '@/components/AppCars'
 import AddCar from '@/components/AddCar'
 
 const routes = [{
-  path: '/cars',
-  component: AppCars
-},
-{
-  path: '/add',
-  component: AddCar
-}]
+    path: '/cars',
+    component: AppCars
+  },
+  {
+    path: '/add',
+    component: AddCar
+  },
+  {
+    path: '/edit/:id',
+    component: AddCar
+  }
+]
 
 
 export const router = new VueRouter({
   routes: routes,
   mode: 'history'
-},
-)
+}, )

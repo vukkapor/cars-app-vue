@@ -19,6 +19,7 @@
         <td>{{car.isAutomatic}}</td>
         <td>{{car.engine}}</td>
         <td>{{car.numberOfDoors}}</td>
+        <td><button type="submit" @click="editCar(car.id)">Edit</button></td>
     </tr>
   </table>
 </template>
@@ -42,6 +43,17 @@ export default {
       .catch(e => {
         alert(e);
       });
+  },
+
+  methods: {
+      editCar(id){
+          carsService
+          .get(id)
+          .then(() => {
+              this.$router.push('edit/' + id)
+              
+          })
+      }
   }
 };
 </script>

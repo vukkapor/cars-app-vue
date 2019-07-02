@@ -54,14 +54,33 @@
       </div>
       <div>
         <label for="isAutomatic">Automatic</label>
-        <input type="checkbox"  id="isAutomatic" v-model="newCar.isAutomatic">
+        <input type="checkbox" id="isAutomatic" v-model="newCar.isAutomatic">
       </div>
       <div>
         <label for="engine">Engine type</label>
-        <input type="radio" name="engine" id="engine" value="diesel" v-model="newCar.engine" required> Diesel
+        <input
+          type="radio"
+          name="engine"
+          id="engine"
+          value="diesel"
+          v-model="newCar.engine"
+          required
+        > Diesel
         <input type="radio" name="engine" id="engine" value="petrol" v-model="newCar.engine"> Petrol
-        <input type="radio" name="engine" id="engine" value="electric" v-model="newCar.engine"> Electric
-        <input type="radio" name="engine" id="engine" value="hybrid" v-model="newCar.engine"> Hybrid
+        <input
+          type="radio"
+          name="engine"
+          id="engine"
+          value="electric"
+          v-model="newCar.engine"
+        > Electric
+        <input
+          type="radio"
+          name="engine"
+          id="engine"
+          value="hybrid"
+          v-model="newCar.engine"
+        > Hybrid
       </div>
       <div>
         <button type="submit">Add a new car</button>
@@ -73,6 +92,9 @@
     <div>
       <button @click="preview()">Preview car</button>
     </div>
+    <div v-if="editable">
+      <button type="submit" @click="editCar(newCar.id, newCar)">Edit this car</button>
+    </div>
   </div>
 </template>
 
@@ -81,7 +103,8 @@ import { carsService } from "@/services/cars";
 export default {
   data() {
     return {
-      newCar: { isAutomatic: false, maxSpeed: 0 }
+      newCar: { isAutomatic: false, maxSpeed: 0 },
+      editable: false
     };
   },
 
@@ -104,14 +127,42 @@ export default {
 
     preview() {
       alert(
-        "Brand: " + this.newCar.brand +
-        "\nModel: "  + this.newCar.model +
-        "\nYear: "  + this.newCar.year +
-        "\nMax speed: "  + this.newCar.maxSpeed +
-        "\nAutomatic: "  + this.newCar.isAutomatic +
-        "\nEngine: "  + this.newCar.engine +
-        "\nNumber of doors: "  + this.newCar.numberOfDoors
-        )
+        "Brand: " +
+          this.newCar.brand +
+          "\nModel: " +
+          this.newCar.model +
+          "\nYear: " +
+          this.newCar.year +
+          "\nMax speed: " +
+          this.newCar.maxSpeed +
+          "\nAutomatic: " +
+          this.newCar.isAutomatic +
+          "\nEngine: " +
+          this.newCar.engine +
+          "\nNumber of doors: " +
+          this.newCar.numberOfDoors
+      );
+    },
+
+    editCar(id, car) {
+      carsService
+        .edit(id, car)
+        .then(() => {
+          this.newCar = { isAutomatic: false };
+          this.$router.push("/cars");
+        })
+        .catch(e => {
+          alert(e);
+        });
+    }
+  },
+
+  mounted() {
+    if (this.$route.params.id) {
+      this.editable = true;
+      carsService.get(this.$route.params.id).then(response => {
+        this.newCar = response.data;
+      });
     }
   }
 };
