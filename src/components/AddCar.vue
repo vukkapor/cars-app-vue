@@ -3,15 +3,15 @@
     <form @submit.prevent="addNewCar(newCar)">
       <div>
         <label for="brand">Brand</label>
-        <input type="text" id="brand" v-model="newCar.brand">
+        <input type="text" minlength="2" id="brand" v-model="newCar.brand" required>
       </div>
       <div>
         <label for="model">Model</label>
-        <input type="text" id="model" v-model="newCar.model">
+        <input type="text" minlength="2" id="model" v-model="newCar.model" required>
       </div>
       <div>
         <label for="year">Year</label>
-        <select id="year" v-model="newCar.year">
+        <select id="year" v-model="newCar.year" required>
           <option value="2019">2019</option>
           <option value="2018">2018</option>
           <option value="2017">2017</option>
@@ -50,18 +50,18 @@
       </div>
       <div>
         <label for="numberOfDoors">Number of doors</label>
-        <input type="number" id="numberOfDoors" v-model="newCar.numberOfDoors">
+        <input type="number" id="numberOfDoors" v-model="newCar.numberOfDoors" required>
       </div>
       <div>
         <label for="isAutomatic">Automatic</label>
-        <input type="checkbox" id="isAutomatic" v-model="newCar.isAutomatic">
+        <input type="checkbox"  id="isAutomatic" v-model="newCar.isAutomatic">
       </div>
       <div>
         <label for="engine">Engine type</label>
-        <input type="radio" id="engine" value="diesel" v-model="newCar.engine"> Diesel
-        <input type="radio" id="engine" value="petrol" v-model="newCar.engine"> Petrol
-        <input type="radio" id="engine" value="electric" v-model="newCar.engine"> Electric
-        <input type="radio" id="engine" value="hybrid" v-model="newCar.engine"> Hybrid
+        <input type="radio" name="engine" id="engine" value="diesel" v-model="newCar.engine" required> Diesel
+        <input type="radio" name="engine" id="engine" value="petrol" v-model="newCar.engine"> Petrol
+        <input type="radio" name="engine" id="engine" value="electric" v-model="newCar.engine"> Electric
+        <input type="radio" name="engine" id="engine" value="hybrid" v-model="newCar.engine"> Hybrid
       </div>
       <div>
         <button type="submit">Add a new car</button>
@@ -81,7 +81,7 @@ import { carsService } from "@/services/cars";
 export default {
   data() {
     return {
-      newCar: { isAutomatic: false }
+      newCar: { isAutomatic: false, maxSpeed: 0 }
     };
   },
 
