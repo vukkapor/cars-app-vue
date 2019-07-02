@@ -35,7 +35,7 @@ export default {
 
   created() {
     carsService
-      .getCars()
+      .getAll()
       .then(response => {
         this.cars = response.data;
       })

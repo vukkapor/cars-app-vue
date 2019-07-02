@@ -5,8 +5,12 @@ export default class CarsService {
         axios.defaults.baseURL = 'http://localhost:3000/api/'
     }
 
-    getCars() {
+    getAll() {
         return axios.get('cars')
+    }
+
+    add(newCar) {
+        return axios.post('cars', newCar)
     }
 }
 
