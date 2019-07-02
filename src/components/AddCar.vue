@@ -67,6 +67,9 @@
         <button type="submit">Add a new car</button>
       </div>
     </form>
+    <div>
+      <button @click="resetForm()">Reset form</button>
+    </div>
   </div>
 </template>
 
@@ -90,6 +93,10 @@ export default {
         .catch(e => {
           alert(e);
         });
+    },
+
+    resetForm() {
+      this.newCar = { isAutomatic: false, maxSpeed: 0, numberOfDoors: 0 };
     }
   }
 };
