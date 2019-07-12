@@ -9,7 +9,8 @@ import Login from './components/Login'
 
 const routes = [{
     path: '/cars',
-    component: AppCars
+    component: AppCars,
+    name: 'cars'
   },
   {
     path: '/add',
@@ -21,7 +22,8 @@ const routes = [{
   },
   {
     path: '/login',
-    component: Login
+    component: Login,
+    name: 'login'
   }
 ]
 

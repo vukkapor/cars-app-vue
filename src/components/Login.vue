@@ -38,7 +38,7 @@ export default {
   methods: {
     login() {
       authService.login(this.email, this.password).then(() => {
-        this.$router.push({ name: "contacts" });
+        this.$router.push({ name: "cars" });
       });
     }
   }
