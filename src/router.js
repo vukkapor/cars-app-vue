@@ -5,6 +5,7 @@ Vue.use(VueRouter)
 
 import AppCars from '@/components/AppCars'
 import AddCar from '@/components/AddCar'
+import Login from './components/Login'
 
 const routes = [{
     path: '/cars',
@@ -17,6 +18,10 @@ const routes = [{
   {
     path: '/edit/:id',
     component: AddCar
+  },
+  {
+    path: '/login',
+    component: Login
   }
 ]
 
