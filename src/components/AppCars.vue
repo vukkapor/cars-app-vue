@@ -23,6 +23,9 @@
       <td>
         <button type="button" @click="editCar(car.id)">Edit</button>
       </td>
+      <router-link :to="showCar(car.id)">
+        <button type="button">Show Car</button>
+      </router-link>
       <td>
         <button type="button" @click="deleteCar(car.id)">Delete</button>
       </td>
@@ -61,11 +64,15 @@ export default {
       carsService
         .delete(id)
         .then(() => {
-            this.$router.go();
+          this.$router.go();
         })
         .catch(e => {
           alert(e);
         });
+    },
+
+    showCar(id) {
+      return "/cars/" + id;
     }
   }
 };

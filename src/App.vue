@@ -8,6 +8,9 @@
         <li class="nav-item">
           <router-link to="/add">Add car</router-link>
         </li>
+        <li>
+          <router-link to="/register">Register</router-link>
+        </li>
         <li v-if="!isAuthenticated">
           <router-link to="/login">Login</router-link>
         </li>
@@ -27,14 +30,16 @@ export default {
   name: "app",
   data() {
     return {
-      isAuthenticated: authService.isAuthenticated()
+      isAuthenticated: false
     };
   },
-
+  created() {
+    this.isAuthenticated = authService.isAuthenticated();
+  },
   methods: {
     logout() {
       authService.logout();
-      this.isAuthenticated = false;
+      this.$router.push("/login");
     }
   }
 };

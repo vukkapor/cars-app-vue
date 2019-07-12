@@ -4,6 +4,7 @@ export default class AuthService {
 
   constructor() {
     this.setAxiosDefaultAuthorizationHeader();
+    this.user = {};
   }
 
   login(email, password) {
@@ -28,6 +29,17 @@ export default class AuthService {
 
   isAuthenticated() {
     return !!window.localStorage.getItem('loginToken')
+  }
+
+  register(name, email, password) {
+    this.user = {};
+    this.user.name = name;
+    this.user.email = email;
+    this.user.password = password;
+    return axios.post('http://localhost:8000/api/register', this.user)
+      .catch($e => {
+        alert($e)
+      })
   }
 }
 
